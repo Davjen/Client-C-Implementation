@@ -89,21 +89,23 @@ void send_cl_check(uint8_t version)
 void send_cl_auth(const char *username, const char *password)
 {
 
+    int username_len = SDL_strlen(username);
+    int password_len = SDL_strlen(password);
 
     //call hashing function to encrypt username and password
     CL_AUTH_T packet = { CL_AUTH };
-    SDL_memcpy(packet.username, username,6);
-    SDL_memcpy(packet.password, password,6);
+    SDL_memcpy(packet.username, username, username_len);
+    SDL_memcpy(packet.password, password, password_len);
     send_packet(&packet, sizeof(CL_AUTH_T));
 }
 
-void send_cl_disconnect(int id)
+void send_cl_disconnect(uint8_t id)
 {
     CL_DISCONNECT_T packet = { CL_DISCONNECT,id };
     send_packet(&packet, sizeof(CL_DISCONNECT_T));
 }
 
-void send_cl_ping(int id) 
+void send_cl_ping(uint8_t id)
 {
     //TO DO -> COUNTDOWN FUNCTION
     CL_PING_T packet = { CL_PING,id };
@@ -112,8 +114,9 @@ void send_cl_ping(int id)
 #pragma endregion
 
 #pragma region RECEIVE_PACKET
-int receive_data_from_server(int *ID)
+int receive_data_from_server(uint8_t*ID)
 {
+    //TO DO->TIME TO REDUCE DIMENSION OF BUFFER BASED ON THE PACKET!
     char buffer[8192];
     int sender_in_size = sizeof(sk_in);
     int len = recvfrom(new_socket, buffer, 8191, 0, (struct sockaddr*)&sk_in, &sender_in_size);
@@ -124,8 +127,8 @@ int receive_data_from_server(int *ID)
         inet_ntop(AF_INET, &sk_in.sin_addr, addr_as_string, 64);
         printf("received %d bytes from %s:%d\n", len, addr_as_string, ntohs(sk_in.sin_port));
 
-        int type;
-        SDL_memcpy(&type, buffer, sizeof(int));
+        uint8_t type;
+        SDL_memcpy(&type, buffer, sizeof(uint8_t));
         printf("type is %d\n", type);
         if (SRV_CHECK == type)
         {
@@ -155,6 +158,7 @@ int receive_data_from_server(int *ID)
             return 0;
             
         }
+
 
 
 

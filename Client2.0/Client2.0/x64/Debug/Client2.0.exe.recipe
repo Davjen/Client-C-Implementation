@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>A:\AIV\Client2.0\x64\Debug\Client2.0.exe</FullPath>
+      <FullPath>A:\AIV\Client-C-Implementation\Client2.0\x64\Debug\Client2.0.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

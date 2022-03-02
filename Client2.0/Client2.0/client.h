@@ -23,14 +23,14 @@ typedef struct CL_CHECK
 
 typedef struct SRV_CHECK
 {
-	int packet_type;
-	int srv_answer;
+	uint8_t packet_type;
+	uint8_t srv_answer;
 
 }SRV_CHECK_T;
 
 typedef struct CL_AUTH
 {
-	int packet_type;
+	uint8_t packet_type;
 	char username[18];
 	char password[18];
 	
@@ -38,21 +38,21 @@ typedef struct CL_AUTH
 
 typedef struct SRV_AUTH
 {
-	int packet_type;
-	int srv_answer;
-	int id;
+	uint8_t packet_type;
+	uint8_t srv_answer;
+	uint8_t id;
 }SRV_AUTH_T;
 
 typedef struct CL_DISCONNECT 
 {
-	int packet_type;
-	int id;
+	uint8_t packet_type;
+	uint8_t id;
 }CL_DISCONNECT_T;
 
 typedef struct CL_PING
 {
-	int packet_type;
-	int id;
+	uint8_t packet_type;
+	uint8_t id;
 }CL_PING_T;
 
 
@@ -61,9 +61,9 @@ int _set_timeout();
 void send_packet(char* packet, int len);
 void send_cl_check(uint8_t version);
 void send_cl_auth(char* username, char* password);
-void send_cl_disconnect(int id);
-void send_cl_ping(int id);
+void send_cl_disconnect(uint8_t id);
+void send_cl_ping(uint8_t id);
 
-int receive_data_from_server(int* ID);
+int receive_data_from_server(uint8_t* ID);
 
 

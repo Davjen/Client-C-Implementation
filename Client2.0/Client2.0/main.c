@@ -13,7 +13,7 @@ int main(int argc, char** argv)
 	
 	int status = -1;
 	uint8_t version = 1;
-	int ID = 0;
+	uint8_t ID = 0;
 
 	SDL_Init(SDL_INIT_VIDEO);
 	client_init();
@@ -26,6 +26,7 @@ int main(int argc, char** argv)
 		goto quit;
 	}
 	
+
 	send_cl_auth("adminn", "adminn");
 	status = receive_data_from_server(&ID);
 	
@@ -38,7 +39,7 @@ int main(int argc, char** argv)
 	int running = 1;
 	SDL_Quit();
 	return 0;
-
+	
 
 quit:
 	SDL_Quit();
