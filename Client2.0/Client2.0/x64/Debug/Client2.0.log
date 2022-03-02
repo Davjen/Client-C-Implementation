@@ -1,0 +1,14 @@
+﻿  client.c
+A:\AIV\Client2.0\Client2.0\client.c(33,24): warning C4244: '=': conversione da 'SOCKET' a 'int'. Possibile perdita di dati.
+A:\AIV\Client2.0\Client2.0\client.c(86,24): warning C4133: 'funzione': tipi non compatibili. Da 'CL_CHECK_T *' a 'char *'
+A:\AIV\Client2.0\Client2.0\client.c(89,31): warning C4028: parametro formale 1 differente dalla dichiarazione
+A:\AIV\Client2.0\Client2.0\client.c(89,53): warning C4028: parametro formale 2 differente dalla dichiarazione
+A:\AIV\Client2.0\Client2.0\client.c(97,24): warning C4133: 'funzione': tipi non compatibili. Da 'CL_AUTH_T *' a 'char *'
+A:\AIV\Client2.0\Client2.0\client.c(103,24): warning C4133: 'funzione': tipi non compatibili. Da 'CL_DISCONNECT_T *' a 'char *'
+A:\AIV\Client2.0\Client2.0\client.c(110,24): warning C4133: 'funzione': tipi non compatibili. Da 'CL_PING_T *' a 'char *'
+A:\AIV\Client2.0\Client2.0\client.c(153,32): warning C4047: '=': 'int *' differisce da 'int' nei livelli di riferimento indiretto
+A:\AIV\Client2.0\Client2.0\client.c(154,20): warning C4477: 'printf': con la stringa di formato '%d' è necessario un argomento di tipo 'int', ma il tipo dell'argomento variadic 1 è 'int *'
+A:\AIV\Client2.0\Client2.0\client.c(154,20): warning C4313: 'printf': '%d' nella stringa di formato è in conflitto con l'argomento 1 di tipo 'int *'
+  main.c
+  Generazione del codice in corso...
+  Client2.0.vcxproj -> A:\AIV\Client2.0\x64\Debug\Client2.0.exe
