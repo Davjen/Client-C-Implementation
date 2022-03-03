@@ -30,7 +30,7 @@ int client_init()
         return -1;
     }
 #endif
-    new_socket = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP); 
+    new_socket = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP); //sending datagram (packet, not stream(tcp))
     if (new_socket < 0)
     {
         return -2;
