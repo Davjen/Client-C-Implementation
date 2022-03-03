@@ -39,7 +39,7 @@ CL_CHECK = Packet(1,"BB",2)
 SRV_CHECK = Packet(2,"BB",2)
 CL_AUTH = Packet(3,"B18s18s",37)
 SRV_AUTH = Packet(4,"BBB",3)
-
+CL_PING = Packet(6,"BB",2)
 
 last_auth = 0
 
@@ -142,7 +142,14 @@ class Server:
                 print("info sent:"+str(new_packet))
                 return
 
-            
+        if(type == CL_PING.type):
+            if(len(packet)!= CL_PING.dimension):
+                raise InvalidPacketSize()
+            else:
+                _,auth=struct.unpack(CL_PING.format,packet)
+                print("id  ",auth)
+                self.players[sender].keep_alive(auth)
+                return
         # if(type == P_POSITION.type):
         #     if(len(packet)!= P_POSITION.dimension):
         #         raise InvalidPacketSize()
@@ -155,25 +162,9 @@ class Server:
         #         self.broadcast(sender,new_packet)
         #         return
 
-        # if(type == P_KEEP_ALIVE.type):
-        #     print("sono qui")
-        #     if(len(packet)!= P_KEEP_ALIVE.dimension):
-        #         raise InvalidPacketSize()
-        #     else:
-        #         self.players[sender].keep_alive(auth)
-        #         return
+        # 
 
-        # if(type == P_HANDSHACKING.type):
-        #     if(len(packet)!= P_HANDSHACKING.dimension):
-        #         raise InvalidPacketSize()
-        #     else:
-        #         print("request for auth")
-        #         auth_packet = struct.pack(P_HANDSHACKING.format,bytes(P_HANDSHACKING.type,"UTF-8"),self.players[sender].auth)
-        #         sent = self.socket.sendto(auth_packet,self.players[sender].signature)
-        #         print("signature "+str(self.players[sender].signature))
-        #         print("byte sent:"+str(sent))
-        #         print("info sent:"+str(auth_packet))
-        #         return
+        
         print("invalid packet type " + type)
                 
 

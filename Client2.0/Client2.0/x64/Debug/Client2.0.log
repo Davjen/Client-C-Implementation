@@ -3,14 +3,9 @@ A:\AIV\Client-C-Implementation\Client2.0\Client2.0\client.c(33,24): warning C424
 A:\AIV\Client-C-Implementation\Client2.0\Client2.0\client.c(86,24): warning C4133: 'funzione': tipi non compatibili. Da 'CL_CHECK_T *' a 'char *'
 A:\AIV\Client-C-Implementation\Client2.0\Client2.0\client.c(89,31): warning C4028: parametro formale 1 differente dalla dichiarazione
 A:\AIV\Client-C-Implementation\Client2.0\Client2.0\client.c(89,53): warning C4028: parametro formale 2 differente dalla dichiarazione
-A:\AIV\Client-C-Implementation\Client2.0\Client2.0\client.c(99,24): warning C4133: 'funzione': tipi non compatibili. Da 'CL_AUTH_T *' a 'char *'
-A:\AIV\Client-C-Implementation\Client2.0\Client2.0\client.c(92,34): warning C4267: 'inizializzazione': conversione da 'size_t' a 'int'. Possibile perdita di dati.
-A:\AIV\Client-C-Implementation\Client2.0\Client2.0\client.c(93,34): warning C4267: 'inizializzazione': conversione da 'size_t' a 'int'. Possibile perdita di dati.
-A:\AIV\Client-C-Implementation\Client2.0\Client2.0\client.c(105,24): warning C4133: 'funzione': tipi non compatibili. Da 'CL_DISCONNECT_T *' a 'char *'
-A:\AIV\Client-C-Implementation\Client2.0\Client2.0\client.c(112,24): warning C4133: 'funzione': tipi non compatibili. Da 'CL_PING_T *' a 'char *'
-A:\AIV\Client-C-Implementation\Client2.0\Client2.0\client.c(156,32): warning C4047: '=': 'uint8_t *' differisce da 'uint8_t' nei livelli di riferimento indiretto
-A:\AIV\Client-C-Implementation\Client2.0\Client2.0\client.c(157,20): warning C4477: 'printf': con la stringa di formato '%d' è necessario un argomento di tipo 'int', ma il tipo dell'argomento variadic 1 è 'uint8_t *'
-A:\AIV\Client-C-Implementation\Client2.0\Client2.0\client.c(157,20): warning C4313: 'printf': '%d' nella stringa di formato è in conflitto con l'argomento 1 di tipo 'uint8_t *'
-  main.c
-  Generazione del codice in corso...
+A:\AIV\Client-C-Implementation\Client2.0\Client2.0\client.c(100,24): warning C4133: 'funzione': tipi non compatibili. Da 'CL_AUTH_T *' a 'char *'
+A:\AIV\Client-C-Implementation\Client2.0\Client2.0\client.c(94,34): warning C4267: 'inizializzazione': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+A:\AIV\Client-C-Implementation\Client2.0\Client2.0\client.c(95,34): warning C4267: 'inizializzazione': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+A:\AIV\Client-C-Implementation\Client2.0\Client2.0\client.c(106,24): warning C4133: 'funzione': tipi non compatibili. Da 'CL_DISCONNECT_T *' a 'char *'
+A:\AIV\Client-C-Implementation\Client2.0\Client2.0\client.c(114,24): warning C4133: 'funzione': tipi non compatibili. Da 'CL_PING_T *' a 'char *'
   Client2.0.vcxproj -> A:\AIV\Client-C-Implementation\Client2.0\x64\Debug\Client2.0.exe

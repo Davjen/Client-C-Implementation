@@ -11,30 +11,53 @@
 int main(int argc, char** argv)
 {
 	
+	int tries_done = 0;
 	int status = -1;
 	uint8_t version = 1;
-	uint8_t ID = 0;
+
 
 	SDL_Init(SDL_INIT_VIDEO);
 	client_init();
-	send_cl_check(version);
-	status = receive_data_from_server(&ID);
 
-	if (status == SRV_WRONG_VERSION)
+	while (status != 0 && tries_done < MAX_TRIES)
 	{
-		//TO DO->FORCE UPDATE
-		goto quit;
-	}
-	
+		send_cl_check(version);
+		status = receive_data_from_server();
+		++tries_done;
 
-	send_cl_auth("adminn", "adminn");
-	status = receive_data_from_server(&ID);
-	
-	if (status == SRV_WRONG_USR_PASS)
-	{
-		//TO DO->FORCE UPDATE
-		goto quit;
+		if (status == SRV_WRONG_VERSION)
+		{
+			//TO DO->FORCE UPDATE
+			goto quit;
+		}
 	}
+
+	tries_done = 0;
+	status = -1;
+	//to do -> refactoring
+	while (status != 0 && tries_done < MAX_TRIES)
+	{
+		send_cl_auth("adminn", "adminn");
+		status = receive_data_from_server();
+		++tries_done;
+		if (status == SRV_WRONG_USR_PASS)
+		{
+			//TO DO->Give chance to change pass and user and re do the auth
+			goto quit;//placeholder
+		}
+	}
+
+	status = -1;
+	tries_done = 0;
+
+	//i'm authorized and with proper client version
+	
+	//game loop
+	send_cl_ping();
+	/*while (true)
+	{
+	}*/
+	
 
 	int running = 1;
 	SDL_Quit();
@@ -42,6 +65,7 @@ int main(int argc, char** argv)
 	
 
 quit:
+	//implement all the quit for socket,etc
 	SDL_Quit();
 	return 0;
 }

@@ -55,15 +55,19 @@ typedef struct CL_PING
 	uint8_t id;
 }CL_PING_T;
 
+typedef struct SRV_PONG
+{
+	uint8_t packet_type;
+}SRV_PONG_T;
 
 int client_init();
 int _set_timeout();
 void send_packet(char* packet, int len);
 void send_cl_check(uint8_t version);
 void send_cl_auth(char* username, char* password);
-void send_cl_disconnect(uint8_t id);
-void send_cl_ping(uint8_t id);
+void send_cl_disconnect();
+void send_cl_ping();
 
-int receive_data_from_server(uint8_t* ID);
+int receive_data_from_server();
 
 

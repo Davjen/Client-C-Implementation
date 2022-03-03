@@ -19,7 +19,7 @@
 
 int new_socket;
 struct sockaddr_in sk_in;
-
+uint8_t ID;
 int client_init()
 {
 #ifdef _WIN32
@@ -35,7 +35,7 @@ int client_init()
     {
         return -2;
     }
-    inet_pton(AF_INET, PUBLIC_SERVER, &sk_in.sin_addr);
+    inet_pton(AF_INET, PUBLIC_SERVER, &sk_in.sin_addr); //parse of server ip and turn it into ipv4
     sk_in.sin_family = AF_INET;
     sk_in.sin_port = htons(SERVER_PORT);
 
@@ -88,43 +88,47 @@ void send_cl_check(uint8_t version)
 
 void send_cl_auth(const char *username, const char *password)
 {
+    //call hashing function to encrypt username and password
+    //maybe separate ID and usr/psw auth if i have to chose a specific server
 
     int username_len = SDL_strlen(username);
     int password_len = SDL_strlen(password);
 
-    //call hashing function to encrypt username and password
     CL_AUTH_T packet = { CL_AUTH };
     SDL_memcpy(packet.username, username, username_len);
     SDL_memcpy(packet.password, password, password_len);
     send_packet(&packet, sizeof(CL_AUTH_T));
 }
 
-void send_cl_disconnect(uint8_t id)
+void send_cl_disconnect()
 {
-    CL_DISCONNECT_T packet = { CL_DISCONNECT,id };
+    CL_DISCONNECT_T packet = { CL_DISCONNECT,ID };
     send_packet(&packet, sizeof(CL_DISCONNECT_T));
 }
 
-void send_cl_ping(uint8_t id)
+void send_cl_ping()
 {
     //TO DO -> COUNTDOWN FUNCTION
-    CL_PING_T packet = { CL_PING,id };
+    
+    CL_PING_T packet = { CL_PING,ID };
     send_packet(&packet, sizeof(CL_PING_T));
 }
 #pragma endregion
 
 #pragma region RECEIVE_PACKET
-int receive_data_from_server(uint8_t*ID)
+
+//TO DO->SMALLE RECEIVE DATA FUNCTION CALLING BIGGER ONE BASED ON TYPE
+int receive_data_from_server()
 {
     //TO DO->TIME TO REDUCE DIMENSION OF BUFFER BASED ON THE PACKET!
     char buffer[8192];
     int sender_in_size = sizeof(sk_in);
-    int len = recvfrom(new_socket, buffer, 8191, 0, (struct sockaddr*)&sk_in, &sender_in_size);
+    int len = recvfrom(new_socket, buffer, 8191, 0, (struct sockaddr*)&sk_in, &sender_in_size); //who's sending info (last 2 input) 
 
     if (len > 0)
     {
         char addr_as_string[64];
-        inet_ntop(AF_INET, &sk_in.sin_addr, addr_as_string, 64);
+        inet_ntop(AF_INET, &sk_in.sin_addr, addr_as_string, 64); //turn int 32bit into a string
         printf("received %d bytes from %s:%d\n", len, addr_as_string, ntohs(sk_in.sin_port));
 
         uint8_t type;
@@ -154,7 +158,7 @@ int receive_data_from_server(uint8_t*ID)
                 return SRV_WRONG_USR_PASS;
             }
             ID = auth_packet.id;
-            printf("Client authorized with ID %d",ID);
+            printf("Client Authorized with ID: %d\n", ID);
             return 0;
             
         }
